@@ -3,15 +3,15 @@
 ## usersテーブル
 
 |Column|Type|Options|
-| ----------------- | ------- | ------------ |
-| email             | string  | unique: ture |
-| encryped_password | string  | null: false  |
-| nickname          | string  | null: false  |
-| last_name         | string  | null: false  |
-| first_name        | string  | null: false  |
-| lastname_kana     | string  | null: false  |
-| firstname_kana    | string  | null: false  |
-| birth_day         | date    | null: false  |
+| ----------------- | ------- | ------------------------ |
+| email             | string  | unique: ture null: false |
+| encryped_password | string  | null: false              |
+| nickname          | string  | null: false              |
+| last_name         | string  | null: false              |
+| first_name        | string  | null: false              |
+| lastname_kana     | string  | null: false              |
+| firstname_kana    | string  | null: false              |
+| birth_day         | date    | null: false              |
 
 
 ### Association
@@ -22,7 +22,7 @@
 
 |Column|Type|Options|
 | ---------------------- | ---------- | ----------------- |
-| item_name              | string     | null: false       |
+| name 　　　             | string     | null: false       |
 | text                   | text       | null: false       |
 | category_id            | interger   | null: false       |
 | state_id               | interger   | null: false       |
@@ -47,9 +47,9 @@
 ### Association
 - belongs_to :user
 - belongs_to :item
-- has_one :street address
+- has_one :street_address
 
-## street addressテーブル
+## street_addressesテーブル
 
 |Column|Type|Options|
 | -------------- | --------- | ----------------- |
@@ -58,7 +58,7 @@
 | municipalities | string    | null: false       |
 | address        | string    | null: false       |
 | place          | string    |                   |
-| tel            | interger  | null: false       |
+| tel            | string    | null: false       |
 | pay            | references| foreign_key: true |
 
 
