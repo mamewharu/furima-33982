@@ -1,57 +1,24 @@
 # README
 
-## userテーブル
+This README would normally document whatever steps are necessary to get the
+application up and running.
 
-|Column|Type|Options|
-| -------------- | ------- | -------- |
-| email          | string  | NOT NULL |
-| password       | string  | NOT NULL |
-| nickname       | string  | NOT NULL |
-| lastname       | string  | NOT NULL |
-| firstname      | string  | NOT NULL |
-| lastname kana  | string  | NOT NULL |
-| firstname kana | string  | NOT NULL |
-| baith year     | integer | NOT NULL |
+Things you may want to cover:
 
+* Ruby version
 
-### Association
-- has_many :items
+* System dependencies
 
-## itemテーブル
+* Configuration
 
-|Column|Type|Options|
-| ---------- | ---------- | -------- |
-| item_name  | string     | NOT NULL |
-| text       | text       | NOT NULL |
-| user       | references |          |
+* Database creation
 
+* Database initialization
 
-### Association
-- belongs :user
-- has_one :pay
+* How to run the test suite
 
-## payテーブル
+* Services (job queues, cache servers, search engines, etc.)
 
-|Column|Type|Options|
-| -------- | ---------- | -------- |
-| item     | references |          |
-| user     | references |          |
+* Deployment instructions
 
-### Association
-- belongs :item
-- has_one :street address
-
-## street addressテーブル
-
-|Column|Type|Options|
-| -------------- | -------- | -------- |
-| postalcode     | interger | NOT NULL |
-| prefectures    | string   | NOT NULL |
-| municipalities | string   | NOT NULL |
-| address        | string   | NOT NULL |
-| place          | string   | NOT NULL |
-| TEL            | interger | NOT NULL |
-
-
-### Association
-- belongs :pay
+* ...
