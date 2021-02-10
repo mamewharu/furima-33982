@@ -1,24 +1,66 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## usersテーブル
 
-Things you may want to cover:
+|Column|Type|Options|
+| ----------------- | ------- | ------------------------ |
+| email             | string  | unique: ture null: false |
+| encryped_password | string  | null: false              |
+| nickname          | string  | null: false              |
+| last_name         | string  | null: false              |
+| first_name        | string  | null: false              |
+| lastname_kana     | string  | null: false              |
+| firstname_kana    | string  | null: false              |
+| birth_day         | date    | null: false              |
 
-* Ruby version
 
-* System dependencies
+### Association
+- has_many :items
+- has_many :pays
 
-* Configuration
+## itemsテーブル
 
-* Database creation
+|Column|Type|Options|
+| ---------------------- | ---------- | ----------------- |
+| name                   | string     | null: false       |
+| text                   | text       | null: false       |
+| category_id            | interger   | null: false       |
+| state_id               | interger   | null: false       |
+| shipping_fee_burden_id | interger   | null: false       |
+| area_id                | interger   | null: false       |
+| shipping_day_id        | interger   | null: false       |
+| price                  | interger   | null: false       |
+| user                   | references | foreign_key: true | 
 
-* Database initialization
 
-* How to run the test suite
+### Association
+- belongs_to :user
+- has_one :pay
 
-* Services (job queues, cache servers, search engines, etc.)
+## paysテーブル
 
-* Deployment instructions
+|Column|Type|Options|
+| -------- | ---------- | ----------------- |
+| item     | references | foreign_key: true |
+| user     | references | foreign_key: true |
 
-* ...
+### Association
+- belongs_to :user
+- belongs_to :item
+- has_one :street_address
+
+## street_addressesテーブル
+
+|Column|Type|Options|
+| -------------- | --------- | ----------------- |
+| postalcode     | string    | null: false       |
+| area_id        | interger  | null: false       |
+| municipalities | string    | null: false       |
+| address        | string    | null: false       |
+| place          | string    |                   |
+| tel            | string    | null: false       |
+| pay            | references| foreign_key: true |
+
+
+### Association
+- belongs_to :pay
