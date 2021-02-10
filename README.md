@@ -22,7 +22,7 @@
 
 |Column|Type|Options|
 | ---------------------- | ---------- | ----------------- |
-| name 　　　             | string     | null: false       |
+| name                   | string     | null: false       |
 | text                   | text       | null: false       |
 | category_id            | interger   | null: false       |
 | state_id               | interger   | null: false       |
