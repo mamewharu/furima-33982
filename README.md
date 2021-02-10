@@ -1,36 +1,38 @@
 # README
 
-## userテーブル
+## usersテーブル
 
 |Column|Type|Options|
-| -------------- | ------- | -------- |
-| email          | string  | NOT NULL |
-| password       | string  | NOT NULL |
-| nickname       | string  | NOT NULL |
-| lastname       | string  | NOT NULL |
-| firstname      | string  | NOT NULL |
-| lastname kana  | string  | NOT NULL |
-| firstname kana | string  | NOT NULL |
-| baith year     | integer | NOT NULL |
+| ----------------- | ------- | ------------ |
+| email             | string  | unique: ture |
+| encryped_password | string  | null: false  |
+| nickname          | string  | null: false  |
+| last_name         | string  | null: false  |
+| first_name        | string  | null: false  |
+| lastname_kana     | string  | null: false  |
+| firstname_kana    | string  | null: false  |
+| baith_year        | integer | null: false  |
 
 
 ### Association
 - has_many :items
+- belongs_to :pay
 
-## itemテーブル
+## itemsテーブル
 
 |Column|Type|Options|
-| ---------- | ---------- | -------- |
-| item_name  | string     | NOT NULL |
-| text       | text       | NOT NULL |
-| user       | references |          |
+| ---------- | ---------- | ----------- |
+| item_name  | string     | null: false |
+| text       | text       | null: false |
+| price      | interger   | null: false |
+| user       | references |             | 
 
 
 ### Association
-- belongs :user
-- has_one :pay
+- belongs_to :user
+- has_one :pays
 
-## payテーブル
+## paysテーブル
 
 |Column|Type|Options|
 | -------- | ---------- | -------- |
@@ -38,20 +40,22 @@
 | user     | references |          |
 
 ### Association
-- belongs :item
+- belongs_to :user
+- belongs_to :item
 - has_one :street address
 
 ## street addressテーブル
 
 |Column|Type|Options|
-| -------------- | -------- | -------- |
-| postalcode     | interger | NOT NULL |
-| prefectures    | string   | NOT NULL |
-| municipalities | string   | NOT NULL |
-| address        | string   | NOT NULL |
-| place          | string   | NOT NULL |
-| TEL            | interger | NOT NULL |
+| -------------- | --------- | ----------- |
+| postalcode     | string    | null: false |
+| prefectures    | string    | null: false |
+| municipalities | string    | null: false |
+| address        | string    | null: false |
+| place          | string    |             |
+| tel            | interger  | null: false |
+| pay            | references|             |
 
 
 ### Association
-- belongs :pay
+- belongs_to :pay
