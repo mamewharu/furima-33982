@@ -3,15 +3,15 @@
 ## usersテーブル
 
 |Column|Type|Options|
-| ----------------- | ------- | ------------------------ |
-| email             | string  | unique: ture null: false |
-| encryped_password | string  | null: false              |
-| nickname          | string  | null: false              |
-| last_name         | string  | null: false              |
-| first_name        | string  | null: false              |
-| lastname_kana     | string  | null: false              |
-| firstname_kana    | string  | null: false              |
-| birth_day         | date    | null: false              |
+| ------------------ | ------- | ------------------------ |
+| email              | string  | unique: true null: false |
+| encrypted_password | string  | null: false              |
+| nickname           | string  | null: false              |
+| last_name          | string  | null: false              |
+| first_name         | string  | null: false              |
+| last_name_kana     | string  | null: false              |
+| first_name_kana    | string  | null: false              |
+| birth_day          | date    | null: false              |
 
 
 ### Association
@@ -41,7 +41,7 @@
 
 |Column|Type|Options|
 | -------- | ---------- | ----------------- |
-| item     | references | foreign_key: true |
+| item     | references | foreign_key: true | 
 | user     | references | foreign_key: true |
 
 ### Association
