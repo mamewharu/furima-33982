@@ -24,12 +24,12 @@
 | ---------------------- | ---------- | ----------------- |
 | name                   | string     | null: false       |
 | text                   | text       | null: false       |
-| category_id            | interger   | null: false       |
-| state_id               | interger   | null: false       |
-| shipping_fee_burden_id | interger   | null: false       |
-| area_id                | interger   | null: false       |
-| shipping_day_id        | interger   | null: false       |
-| price                  | interger   | null: false       |
+| category_id            | integer    | null: false       |
+| state_id               | integer    | null: false       |
+| shipping_fee_burden_id | integer    | null: false       |
+| area_id                | integer    | null: false       |
+| shipping_day_id        | integer    | null: false       |
+| price                  | integer    | null: false       |
 | user                   | references | foreign_key: true | 
 
 
@@ -53,8 +53,8 @@
 
 |Column|Type|Options|
 | -------------- | --------- | ----------------- |
-| postalcode     | string    | null: false       |
-| area_id        | interger  | null: false       |
+| postal_code    | string    | null: false       |
+| area_id        | integer   | null: false       |
 | municipalities | string    | null: false       |
 | address        | string    | null: false       |
 | place          | string    |                   |

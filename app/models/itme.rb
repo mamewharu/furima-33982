@@ -1,0 +1,2 @@
+class Itme < ApplicationRecord
+end
