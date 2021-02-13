@@ -1,6 +1,6 @@
-class CreateItmes < ActiveRecord::Migration[6.0]
+class CreateItems < ActiveRecord::Migration[6.0]
   def change
-    create_table :itmes do |t|
+    create_table :items do |t|
       t.string     :name,                       null:false
       t.text       :text,                       null:false
       t.integer    :category_id,                null:false
