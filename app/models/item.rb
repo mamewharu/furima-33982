@@ -8,5 +8,8 @@ class Item < ApplicationRecord
     validates  :area_id                
     validates  :shipping_day_id            
     validates  :price, between: {300,9999999} 
+    validates  :image
   end
+
+  belongs_to :user
 end
