@@ -1,4 +1,6 @@
 class Item < ApplicationRecord
+  belongs_to :user
+
   with_options presence:true do
     validates  :name                       
     validates  :text                      
@@ -7,9 +9,6 @@ class Item < ApplicationRecord
     validates  :shipping_fee_burden_id    
     validates  :area_id                
     validates  :shipping_day_id            
-    validates  :price, between: {300,9999999} 
-    validates  :image
+    validates  :price
   end
-
-  belongs_to :user
 end
