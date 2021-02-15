@@ -9,14 +9,14 @@ class Item < ApplicationRecord
   has_one_attached :image
 
   with_options presence:true do
-    validates  :name                       
-    validates  :text                      
+    validates  :name, length: {maximum: 40}
+    validates  :text, length: {maximum: 10000} 
     validates  :category_id ,  numericality: { other_than: 1 }
     validates  :state_id, numericality: { other_than: 1 } 
     validates  :shipping_fee_burden_id, numericality: { other_than: 1 }
     validates  :area_id, numericality: { other_than: 1 }
     validates  :shipping_day_id, numericality: { other_than: 1 } 
-    validates  :price
+    validates  :price, numericality: {with: /\A[0-9]+\z/, message:"Half-width number"}
     validates  :image
   end
 end
