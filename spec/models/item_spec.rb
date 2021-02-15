@@ -63,6 +63,16 @@ RSpec.describe Item, type: :model do
     @item.valid?
     expect(@item.errors.full_messages).to include("Price Half-width number")
   end
+  it '300円以下だとと登録できないこと' do
+    @item.price = '299'
+    @item.valid?
+    expect(@item.errors.full_messages).to include("Price Out of setting range")
+  end
+  it '9999999円以上だとと登録できないこと' do
+      @item.price = '10000000'
+      @item.valid?
+      expect(@item.errors.full_messages).to include("Price Out of setting range")
+  end
   #商品画像の異常系テストコード
   it '商品画像がないと登録できないこと' do
     @item.image = nil
