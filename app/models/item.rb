@@ -1,6 +1,10 @@
 class Item < ApplicationRecord
   extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to :category_genre
+  belongs_to :state_genre
+  belongs_to :shipping_fee_burde_ngenre
+  belongs_to :area_genre
+  belongs_to :shipping_day_genre
   belongs_to :user
   has_one_attached :image
 
