@@ -125,23 +125,21 @@
   <div class='item-contents'>
     <h2 class='title'>ピックアップカテゴリー</h2>
      <%= link_to '新規投稿商品', new_item_path, class: "subtitle" %>
-    <ul class='item-lists'>
     <% else %>
     <div class='item-contents'>
     <h2 class='title'>ピックアップカテゴリー</h2>
      <%= link_to '新規投稿商品', new_user_session_path, class: "subtitle" %>
-    <ul class='item-lists'>
     <% end %>
 
+    <ul class='item-lists'>
       <%# 出品した商品をすべてを展開している %>
       <% if @items.present? %>
        <% @items.each do |item| %>
-       <li class='list'>
+        <li class='list'>
           <%# 詳細ページのリンク %>
          <%= link_to "#" do %> 
           <div class='item-img-content'>
            <%= image_tag item.image, class: "item-img" %>
-
           <%# 商品が売れていればsold outを表示しましょう %>
            <div class='sold-out'>
              <span>Sold Out!!</span>
@@ -184,8 +182,6 @@
         <% end %>
       <% end %>
       </li>
-      <%# //商品がある場合は表示されないようにしましょう %>
-      <%# //商品がない場合は以下のダミー商品が表示されるようにしましょう %>
     </ul>
   </div>
   <%# /商品一覧 %>
