@@ -28,7 +28,7 @@ RSpec.describe Item, type: :model do
     @item.valid?
     expect(@item.errors.full_messages).to include("Category can't be blank")
   end
-  it '--を選択すると登録できないこと' do
+  it 'カテゴリーにて「--」を選択すると登録できないこと' do
     @item.category_id = 1
     @item.valid?
     expect(@item.errors.full_messages).to include("Category Select")
@@ -39,7 +39,7 @@ RSpec.describe Item, type: :model do
     @item.valid?
     expect(@item.errors.full_messages).to include("State can't be blank")
   end
-  it '--を選択すると登録できないこと' do
+  it '商品状態にて「--」を選択すると登録できないこと' do
     @item.state_id = 1
     @item.valid?
     expect(@item.errors.full_messages).to include("State Select")
@@ -50,7 +50,7 @@ RSpec.describe Item, type: :model do
     @item.valid?
     expect(@item.errors.full_messages).to include("Shipping fee burden can't be blank")
   end
-  it '--を選択すると登録できないこと' do
+  it '配送料負担にて「--」を選択すると登録できないこと' do
     @item.shipping_fee_burden_id = 1
     @item.valid?
     expect(@item.errors.full_messages).to include("Shipping fee burden Select")
@@ -61,7 +61,7 @@ RSpec.describe Item, type: :model do
     @item.valid?
     expect(@item.errors.full_messages).to include("Area can't be blank")
   end
-  it '--を選択すると登録できないこと' do
+  it '発送元の地域にて「--」を選択すると登録できないこと' do
     @item.area_id = 1
     @item.valid?
     expect(@item.errors.full_messages).to include("Area Select")
@@ -72,7 +72,7 @@ RSpec.describe Item, type: :model do
     @item.valid?
     expect(@item.errors.full_messages).to include("Shipping day can't be blank")
   end
-  it '--を選択すると登録できないこと' do
+  it '発送までの日数にて「--」を選択すると登録できないこと' do
     @item.shipping_day_id = 1
     @item.valid?
     expect(@item.errors.full_messages).to include("Shipping day Select")
