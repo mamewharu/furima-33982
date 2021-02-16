@@ -28,11 +28,21 @@ RSpec.describe Item, type: :model do
     @item.valid?
     expect(@item.errors.full_messages).to include("Category can't be blank")
   end
+  it '--を選択すると登録できないこと' do
+    @item.category_id = 1
+    @item.valid?
+    expect(@item.errors.full_messages).to include("Category Select")
+  end
   # 商品状態の異常系テストコード
   it '商品状態の選択がないと登録できないこと' do
     @item.state_id = ''
     @item.valid?
     expect(@item.errors.full_messages).to include("State can't be blank")
+  end
+  it '--を選択すると登録できないこと' do
+    @item.state_id = 1
+    @item.valid?
+    expect(@item.errors.full_messages).to include("State Select")
   end
   # 配送料負担の異常系テストコード
   it '配送料負担の選択がないと登録できないこと' do
@@ -40,17 +50,32 @@ RSpec.describe Item, type: :model do
     @item.valid?
     expect(@item.errors.full_messages).to include("Shipping fee burden can't be blank")
   end
+  it '--を選択すると登録できないこと' do
+    @item.shipping_fee_burden_id = 1
+    @item.valid?
+    expect(@item.errors.full_messages).to include("Shipping fee burden Select")
+  end
   # 発送元の地域の異常系テストコード
   it '発送元の地域の選択がないと登録できないこと' do
     @item.area_id = ''
     @item.valid?
     expect(@item.errors.full_messages).to include("Area can't be blank")
   end
+  it '--を選択すると登録できないこと' do
+    @item.area_id = 1
+    @item.valid?
+    expect(@item.errors.full_messages).to include("Area Select")
+  end
   # 発送までの日数の異常系テストコード
   it '発送までの日数の選択がないと登録できないこと' do
     @item.shipping_day_id = ''
     @item.valid?
     expect(@item.errors.full_messages).to include("Shipping day can't be blank")
+  end
+  it '--を選択すると登録できないこと' do
+    @item.shipping_day_id = 1
+    @item.valid?
+    expect(@item.errors.full_messages).to include("Shipping day Select")
   end
   # 販売価格の異常系テストコード
   it '販売価格の入力がないと登録できないこと' do
@@ -64,12 +89,12 @@ RSpec.describe Item, type: :model do
     expect(@item.errors.full_messages).to include('Price Half-width number')
   end
   it '300円以下だとと登録できないこと' do
-    @item.price = '299'
+    @item.price = 299
     @item.valid?
     expect(@item.errors.full_messages).to include('Price Out of setting range')
   end
   it '9999999円以上だとと登録できないこと' do
-    @item.price = '10000000'
+    @item.price = 10000000
     @item.valid?
     expect(@item.errors.full_messages).to include('Price Out of setting range')
   end
