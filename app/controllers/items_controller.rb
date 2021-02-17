@@ -1,5 +1,6 @@
 class ItemsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
+  before_action :set_item, only:[:show, :edit, :update]
   before_action :move_index, only: [:edit]
 
   def index
@@ -43,8 +44,11 @@ class ItemsController < ApplicationController
                                  :price, :image).merge(user_id: current_user.id)
   end
 
-  def move_index
+  def set_item
     @item = Item.find(params[:id])
+  end
+
+  def move_index
     redirect_to root_path unless current_user == @item.user
   end
 end
