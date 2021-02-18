@@ -1,3 +1,3 @@
 class StreetAddress < ApplicationRecord
-  street_addresses
+  belongs_to :pay
 end
