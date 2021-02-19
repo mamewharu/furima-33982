@@ -2,13 +2,14 @@ class PaysController < ApplicationController
 
   def index
     @item = Item.find(params[:item_id])
-    @pay_streetaddress = PayStreetaddress.new
+    @pay_streetaddress = PayStreetAddress.new
   end
   
   def create
-    binding.pry
+    
     @item = Item.find(params[:item_id])
-    @pay_streetaddress = PayStreetaddress.new(pay_params)
+    
+    @pay_streetaddress = PayStreetAddress.new(pay_params)
     if @pay_streetaddress.valid? 
       @pay_streetaddress.save
       return redirect_to root_path
