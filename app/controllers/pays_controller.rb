@@ -8,7 +8,6 @@ class PaysController < ApplicationController
   def create
     @item = Item.find(params[:item_id])
     @pay_streetaddress = PayStreetAddress.new(pay_params)
-    binding.pry
     if @pay_streetaddress.valid? 
      
       @pay_streetaddress.save
