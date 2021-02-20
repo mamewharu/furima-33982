@@ -6,12 +6,13 @@ class PaysController < ApplicationController
   end
   
   def create
-    
     @item = Item.find(params[:item_id])
-    
     @pay_streetaddress = PayStreetAddress.new(pay_params)
+   binding.pry
     if @pay_streetaddress.valid? 
+     
       @pay_streetaddress.save
+      
       return redirect_to root_path
     else
       render :index
