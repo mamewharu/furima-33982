@@ -3,8 +3,6 @@ require 'rails_helper'
 RSpec.describe PayStreetAddress, type: :model do
   describe '購入情報' do
     before do
-      # user = FactoryBot.create(:user)
-      # item = FactoryBot.create(:item)
       @pay_street_address = FactoryBot.build(:pay_street_address)
     end
 
@@ -70,6 +68,12 @@ RSpec.describe PayStreetAddress, type: :model do
       @pay_street_address.tel = '０９０１２３４５６７'
       @pay_street_address.valid?
       expect(@pay_street_address.errors.full_messages).to include("Tel Input only number")
+    end
+
+    it "tokenの情報がないと保存できないこと" do
+      @pay_street_address.token = " "
+      @pay_street_address.valid?
+      expect(@pay_street_address.errors.full_messages).to include("Token can't be blank")
     end
 
   end
