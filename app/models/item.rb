@@ -6,6 +6,7 @@ class Item < ApplicationRecord
   belongs_to :area
   belongs_to :shipping_day
   belongs_to :user
+  has_one :pay
   has_one_attached :image
 
   with_options presence: true do
