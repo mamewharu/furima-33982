@@ -2,9 +2,10 @@ require 'rails_helper'
 
 RSpec.describe PayStreetAddress, type: :model do
   before do
-    user = FactoryBot.build(:user)
-    item = FactoryBot.build(:item)
+    user = FactoryBot.create(:user)
+    item  = FactoryBot.create(:item, user_id: user.id) 
     @pay_street_address = FactoryBot.build(:pay_street_address, user_id: user.id, item_id: item.id)
+    sleep(1)
   end
 
   describe '購入機能' do
@@ -15,7 +16,6 @@ RSpec.describe PayStreetAddress, type: :model do
 
       it 'placeが空でも保存できること' do
         @pay_street_address.place = ''
-        @pay_street_address.valid?
         expect(@pay_street_address).to be_valid
       end
     end
@@ -90,10 +90,14 @@ RSpec.describe PayStreetAddress, type: :model do
       # user_idとitem_idの異常テストコード
       it 'user_idがないと購入できないこと' do
         @pay_street_address.user_id = ''
+        @pay_street_address.valid?
+        expect(@pay_street_address.errors.full_messages).to include("User can't be blank")
       end
 
       it 'item_idがないと購入できないこと' do
         @pay_street_address.item_id = ''
+        @pay_street_address.valid?
+        expect(@pay_street_address.errors.full_messages).to include("Item can't be blank")
       end
     end
   end

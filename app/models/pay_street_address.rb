@@ -8,6 +8,8 @@ class PayStreetAddress
     validates :municipalities
     validates :address
     validates :tel, numericality: { only_integer: true, message: 'Input only number' }
+    validates :user_id
+    validates :item_id
   end
   validates :area_id, numericality: { other_than: 1, message: 'select' }
 
