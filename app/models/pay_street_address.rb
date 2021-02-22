@@ -1,6 +1,6 @@
 class PayStreetAddress
   include ActiveModel::Model
-  attr_accessor :postal_code, :area_id, :municipalities, :address, :place, :tel, :pay_id, :item_id, :user_id, :token
+  attr_accessor :postal_code, :area_id, :municipalities, :address, :place, :tel, :item_id, :user_id, :token
 
   with_options presence: true do
     validates :token
@@ -17,6 +17,6 @@ class PayStreetAddress
     pay = Pay.create(item_id: item_id, user_id: user_id)
 
     StreetAddress.create(postal_code: postal_code, area_id: area_id, municipalities: municipalities, address: address,
-                         place: place, tel: tel, pay_id: pay.id)
+                         place: place, tel: tel)
   end
 end
