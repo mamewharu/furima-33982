@@ -1,7 +1,7 @@
 class PaysController < ApplicationController
   before_action :authenticate_user!, only: [:index, :create]
   before_action :set_pay, only: [:index, :create]
-  before_action :move_toppage, only: [:index, :create]
+  before_action :move_top_page, only: [:index, :create]
 
   def index
     @pay_streetaddress = PayStreetAddress.new
@@ -10,7 +10,7 @@ class PaysController < ApplicationController
   def create
     @pay_streetaddress = PayStreetAddress.new(pay_params)
     if @pay_streetaddress.valid?
-      crdit
+      credit
       @pay_streetaddress.save
       redirect_to root_path
     else
@@ -26,7 +26,7 @@ class PaysController < ApplicationController
     )
   end
 
-  def crdit
+  def credit
     Payjp.api_key = ENV['PAYJP_SECRET_KEY']
     Payjp::Charge.create(
       amount: @item.price,
@@ -35,7 +35,7 @@ class PaysController < ApplicationController
     )
   end
 
-  def move_toppage
+  def move_top_page
     redirect_to root_path if current_user == @item.user || @item.pay.present?
   end
 
