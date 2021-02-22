@@ -20,13 +20,13 @@ RSpec.describe PayStreetAddress, type: :model do
     it "postal_codeが半角数字で値を入力してないと保存できないこと" do
       @pay_street_address.postal_code = "１２３４-５６７"
       @pay_street_address.valid?
-      expect(@pay_street_address.errors.full_messages).to include("Postal code is invalid. Include hyphen(-)")
+      expect(@pay_street_address.errors.full_messages).to include("Postal code Input correctly")
     end
 
     it "postal_codeが半角のハイフンを含んだ値を入力してないと保存できないこと" do
       @pay_street_address.postal_code = "1234567"
       @pay_street_address.valid?
-      expect(@pay_street_address.errors.full_messages).to include("Postal code is invalid. Include hyphen(-)")
+      expect(@pay_street_address.errors.full_messages).to include("Postal code Input correctly")
     end
 
     #都道府県の異常テストコード

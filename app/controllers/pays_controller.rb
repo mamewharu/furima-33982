@@ -1,8 +1,12 @@
 class PaysController < ApplicationController
+  before_action :move_toppage, only: :index
 
   def index
     @item = Item.find(params[:item_id])
     @pay_streetaddress = PayStreetAddress.new
+     if current_user == @item.user
+      redirect_to root_path
+     end
   end
   
   def create
@@ -30,4 +34,9 @@ class PaysController < ApplicationController
        card:   pay_params[:token],
        currency: 'jpy' )
   end
+
+  def move_toppage
+    redirect_to root_path unless current_user 
+  end
+
 end
