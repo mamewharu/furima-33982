@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_02_14_034301) do
+ActiveRecord::Schema.define(version: 2021_02_18_080326) do
 
   create_table "active_storage_attachments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
@@ -48,6 +48,28 @@ ActiveRecord::Schema.define(version: 2021_02_14_034301) do
     t.index ["user_id"], name: "index_items_on_user_id"
   end
 
+  create_table "pays", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "item_id"
+    t.bigint "user_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["item_id"], name: "index_pays_on_item_id"
+    t.index ["user_id"], name: "index_pays_on_user_id"
+  end
+
+  create_table "street_addresses", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "postal_code", null: false
+    t.integer "area_id", null: false
+    t.string "municipalities", null: false
+    t.string "address", null: false
+    t.string "place"
+    t.string "tel", null: false
+    t.bigint "pay_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["pay_id"], name: "index_street_addresses_on_pay_id"
+  end
+
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "email", null: false
     t.string "encrypted_password", default: "", null: false
@@ -68,4 +90,7 @@ ActiveRecord::Schema.define(version: 2021_02_14_034301) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "items", "users"
+  add_foreign_key "pays", "items"
+  add_foreign_key "pays", "users"
+  add_foreign_key "street_addresses", "pays"
 end
