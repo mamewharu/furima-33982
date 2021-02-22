@@ -7,10 +7,6 @@ RSpec.describe PayStreetAddress, type: :model do
     @pay_street_address = FactoryBot.build(:pay_street_address, user_id: user.id, item_id: item.id)
   end
 
-  before do
-    @item = FactoryBot.build(:item)
-  end
-
   describe '購入機能' do
     context '購入がうまくいった時' do
       it '全ての購入情報が正しく入力されていれば保存できること' do
