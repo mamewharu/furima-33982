@@ -1,79 +1,104 @@
 require 'rails_helper'
 
 RSpec.describe PayStreetAddress, type: :model do
-  describe '購入情報' do
     before do
-      @pay_street_address = FactoryBot.build(:pay_street_address)
+      user = FactoryBot.build(:user)
+      item = FactoryBot.build(:item)
+      @pay_street_address = FactoryBot.build(:pay_street_address, user_id: user.id, item_id: item.id)
     end
 
-    it '全ての購入情報が正しく入力されていれば保存できること' do
-      expect(@pay_street_address).to be_valid
+    before do
+      @item = FactoryBot.build(:item)
     end
 
-    # postal_codeの異常テストコード
-    it 'postal_codeが空だと保存できないこと' do
-      @pay_street_address.postal_code = ' '
-      @pay_street_address.valid?
-      expect(@pay_street_address.errors.full_messages).to include("Postal code can't be blank")
+  describe '購入機能' do
+    context '購入がうまくいった時' do
+      it '全ての購入情報が正しく入力されていれば保存できること' do
+        expect(@pay_street_address).to be_valid
+      end
+    
+      it 'placeが空でも保存できること' do
+        @pay_street_address.place = ''
+        @pay_street_address.valid?
+        expect(@pay_street_address).to be_valid
+      end
     end
 
-    it 'postal_codeが半角数字で値を入力してないと保存できないこと' do
-      @pay_street_address.postal_code = '１２３４-５６７'
-      @pay_street_address.valid?
-      expect(@pay_street_address.errors.full_messages).to include('Postal code Input correctly')
-    end
+   context '購入がうまくいかなかった時' do
+      # postal_codeの異常テストコード
+      it 'postal_codeが空だと購入できないこと' do
+        @pay_street_address.postal_code = ' '
+        @pay_street_address.valid?
+        expect(@pay_street_address.errors.full_messages).to include("Postal code can't be blank")
+      end
 
-    it 'postal_codeが半角のハイフンを含んだ値を入力してないと保存できないこと' do
-      @pay_street_address.postal_code = '1234567'
-      @pay_street_address.valid?
-      expect(@pay_street_address.errors.full_messages).to include('Postal code Input correctly')
-    end
+      it 'postal_codeが半角数字で値を入力してないと購入できないこと' do
+        @pay_street_address.postal_code = '１２３４-５６７'
+        @pay_street_address.valid?
+        expect(@pay_street_address.errors.full_messages).to include('Postal code Input correctly')
+      end
 
-    # 都道府県の異常テストコード
-    it 'area_idを選択していないと保存できないこと' do
-      @pay_street_address.area_id = ''
-      @pay_street_address.valid?
-      expect(@pay_street_address.errors.full_messages).to include('Area select')
-    end
+      it 'postal_codeが半角のハイフンを含んだ値を入力してないと購入できないこと' do
+        @pay_street_address.postal_code = '1234567'
+        @pay_street_address.valid?
+        expect(@pay_street_address.errors.full_messages).to include('Postal code Input correctly')
+      end
 
-    # 市町村の異常テストコード
-    it 'municipalitiesが空だと保存できないこと' do
-      @pay_street_address.municipalities = ' '
-      @pay_street_address.valid?
-      expect(@pay_street_address.errors.full_messages).to include("Municipalities can't be blank")
-    end
+      # 都道府県の異常テストコード
+      it 'area_idにて「--」を選択すると購入できないこと' do
+        @pay_street_address.area_id = 1
+        @pay_street_address.valid?
+        expect(@pay_street_address.errors.full_messages).to include('Area select')
+      end
 
-    # 番地の異常テストコード
-    it 'addressが空だと保存できないこと' do
-      @pay_street_address.address = ''
-      @pay_street_address.valid?
-      expect(@pay_street_address.errors.full_messages).to include("Address can't be blank")
-    end
+      # 市町村の異常テストコード
+      it 'municipalitiesが空だと購入できないこと' do
+        @pay_street_address.municipalities = ' '
+        @pay_street_address.valid?
+        expect(@pay_street_address.errors.full_messages).to include("Municipalities can't be blank")
+      end
 
-    # 建物の異常テストコード
-    it 'placeが空でも保存できること' do
-      @pay_street_address.place = ''
-      @pay_street_address.valid?
-      expect(@pay_street_address).to be_valid
-    end
+      # 番地の異常テストコード
+      it 'addressが空だと購入できないこと' do
+        @pay_street_address.address = ''
+        @pay_street_address.valid?
+        expect(@pay_street_address.errors.full_messages).to include("Address can't be blank")
+      end
 
-    # telの異常テストコード
-    it 'telが空だと保存できないこと' do
-      @pay_street_address.tel = ''
-      @pay_street_address.valid?
-      expect(@pay_street_address.errors.full_messages).to include("Tel can't be blank")
-    end
+      # telの異常テストコード
+      it 'telが空だと購入できないこと' do
+        @pay_street_address.tel = ''
+        @pay_street_address.valid?
+        expect(@pay_street_address.errors.full_messages).to include("Tel can't be blank")
+      end
 
-    it 'telの値が整数でないと保存できないこと' do
-      @pay_street_address.tel = '０９０１２３４５６７'
-      @pay_street_address.valid?
-      expect(@pay_street_address.errors.full_messages).to include('Tel Input only number')
-    end
+      it 'telの値が整数でないと購入できないこと' do
+        @pay_street_address.tel = '０９０１２３４５６７'
+        @pay_street_address.valid?
+        expect(@pay_street_address.errors.full_messages).to include('Tel Input only number')
+      end
 
-    it 'tokenの情報がないと保存できないこと' do
-      @pay_street_address.token = ' '
-      @pay_street_address.valid?
-      expect(@pay_street_address.errors.full_messages).to include("Token can't be blank")
+      it 'telの値が英数混合だと購入できないこと' do
+        @pay_street_address.tel = '09012345abc'
+        @pay_street_address.valid?
+        expect(@pay_street_address.errors.full_messages).to include('Tel Input only number')
+     end
+
+     #tokenの異常テストコード
+      it 'tokenの情報がないと購入できないこと' do
+        @pay_street_address.token = ' '
+        @pay_street_address.valid?
+        expect(@pay_street_address.errors.full_messages).to include("Token can't be blank")
+      end
+
+      #user_idとitem_idの異常テストコード
+      it 'user_idがないと購入できないこと' do
+      @pay_street_address.user_id = ' ' 
+      end
+
+      it 'item_idがないと購入できないこと' do
+      @pay_street_address.item_id = ' ' 
+      end
     end
   end
 end

@@ -1,14 +1,13 @@
 class PaysController < ApplicationController
   before_action :move_toppage, only: :index
+  before_action :set_pay, only:[:index, :create]
 
   def index
-    @item = Item.find(params[:item_id])
     @pay_streetaddress = PayStreetAddress.new
     redirect_to root_path if current_user == @item.user
   end
 
   def create
-    @item = Item.find(params[:item_id])
     @pay_streetaddress = PayStreetAddress.new(pay_params)
     if @pay_streetaddress.valid?
       crdit
@@ -39,4 +38,9 @@ class PaysController < ApplicationController
   def move_toppage
     redirect_to root_path unless current_user
   end
+
+  def set_pay
+    @item = Item.find(params[:item_id])
+  end
+
 end
