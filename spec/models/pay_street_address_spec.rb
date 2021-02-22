@@ -1,22 +1,22 @@
 require 'rails_helper'
 
 RSpec.describe PayStreetAddress, type: :model do
-    before do
-      user = FactoryBot.build(:user)
-      item = FactoryBot.build(:item)
-      @pay_street_address = FactoryBot.build(:pay_street_address, user_id: user.id, item_id: item.id)
-    end
+  before do
+    user = FactoryBot.build(:user)
+    item = FactoryBot.build(:item)
+    @pay_street_address = FactoryBot.build(:pay_street_address, user_id: user.id, item_id: item.id)
+  end
 
-    before do
-      @item = FactoryBot.build(:item)
-    end
+  before do
+    @item = FactoryBot.build(:item)
+  end
 
   describe '購入機能' do
     context '購入がうまくいった時' do
       it '全ての購入情報が正しく入力されていれば保存できること' do
         expect(@pay_street_address).to be_valid
       end
-    
+
       it 'placeが空でも保存できること' do
         @pay_street_address.place = ''
         @pay_street_address.valid?
@@ -24,10 +24,10 @@ RSpec.describe PayStreetAddress, type: :model do
       end
     end
 
-   context '購入がうまくいかなかった時' do
+    context '購入がうまくいかなかった時' do
       # postal_codeの異常テストコード
       it 'postal_codeが空だと購入できないこと' do
-        @pay_street_address.postal_code = ' '
+        @pay_street_address.postal_code = ''
         @pay_street_address.valid?
         expect(@pay_street_address.errors.full_messages).to include("Postal code can't be blank")
       end
@@ -53,7 +53,7 @@ RSpec.describe PayStreetAddress, type: :model do
 
       # 市町村の異常テストコード
       it 'municipalitiesが空だと購入できないこと' do
-        @pay_street_address.municipalities = ' '
+        @pay_street_address.municipalities = ''
         @pay_street_address.valid?
         expect(@pay_street_address.errors.full_messages).to include("Municipalities can't be blank")
       end
@@ -82,22 +82,22 @@ RSpec.describe PayStreetAddress, type: :model do
         @pay_street_address.tel = '09012345abc'
         @pay_street_address.valid?
         expect(@pay_street_address.errors.full_messages).to include('Tel Input only number')
-     end
+      end
 
-     #tokenの異常テストコード
+      # tokenの異常テストコード
       it 'tokenの情報がないと購入できないこと' do
-        @pay_street_address.token = ' '
+        @pay_street_address.token = ''
         @pay_street_address.valid?
         expect(@pay_street_address.errors.full_messages).to include("Token can't be blank")
       end
 
-      #user_idとitem_idの異常テストコード
+      # user_idとitem_idの異常テストコード
       it 'user_idがないと購入できないこと' do
-      @pay_street_address.user_id = ' ' 
+        @pay_street_address.user_id = ''
       end
 
       it 'item_idがないと購入できないこと' do
-      @pay_street_address.item_id = ' ' 
+        @pay_street_address.item_id = ''
       end
     end
   end

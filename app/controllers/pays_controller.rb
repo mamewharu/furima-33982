@@ -1,6 +1,6 @@
 class PaysController < ApplicationController
   before_action :move_toppage, only: :index
-  before_action :set_pay, only:[:index, :create]
+  before_action :set_pay, only: [:index, :create]
 
   def index
     @pay_streetaddress = PayStreetAddress.new
@@ -42,5 +42,4 @@ class PaysController < ApplicationController
   def set_pay
     @item = Item.find(params[:item_id])
   end
-
 end
