@@ -45,7 +45,7 @@ RSpec.describe PayStreetAddress, type: :model do
       end
 
       # 都道府県の異常テストコード
-      it 'area_idにて「--」を選択すると購入できないこと' do
+      it 'area_idにて「---」を選択すると購入できないこと' do
         @pay_street_address.area_id = 1
         @pay_street_address.valid?
         expect(@pay_street_address.errors.full_messages).to include('Area select')
