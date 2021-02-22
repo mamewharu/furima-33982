@@ -22,7 +22,7 @@ class PaysController < ApplicationController
 
   def pay_params
     params.require(:pay_street_address).permit(:postal_code, :area_id, :municipalities, :address, :tel).merge(
-      item_id: @item.id, user_id: current_user.id, item_price: @item.price, token: params[:token]
+      item_id: @item.id, user_id: current_user.id, token: params[:token]
     )
   end
 

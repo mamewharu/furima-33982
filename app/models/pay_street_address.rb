@@ -1,6 +1,6 @@
 class PayStreetAddress
   include ActiveModel::Model
-  attr_accessor :postal_code, :area_id, :municipalities, :address, :place, :tel, :pay_id, :item_id, :user_id, :token, :item_price
+  attr_accessor :postal_code, :area_id, :municipalities, :address, :place, :tel, :pay_id, :item_id, :user_id, :token
 
   with_options presence: true do
     validates :token
