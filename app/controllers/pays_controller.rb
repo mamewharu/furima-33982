@@ -1,7 +1,7 @@
 class PaysController < ApplicationController
-  before_action :authenticate_user!, only: :index
+  before_action :authenticate_user!, only: [:index, :create]
   before_action :set_pay, only: [:index, :create]
-  before_action :move_toppage, only: :index
+  before_action :move_toppage, only: [:index, :create]
 
   def index
     @pay_streetaddress = PayStreetAddress.new
@@ -36,7 +36,7 @@ class PaysController < ApplicationController
   end
 
   def move_toppage
-    redirect_to root_path if current_user == @item.user
+    redirect_to root_path if current_user == @item.user || @item.pay.present?
   end
 
   def set_pay

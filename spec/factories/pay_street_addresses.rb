@@ -4,7 +4,7 @@ FactoryBot.define do
     area_id        { 3 }
     municipalities { 'あああ' }
     address        { 'いいい' }
-    place          { '' }
+    place          { 'ううう' }
     tel            { '09012345678' }
     token          { 'tok_abcdefghijk00000000000000000' }
   end
