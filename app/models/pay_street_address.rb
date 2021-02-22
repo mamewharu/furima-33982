@@ -4,17 +4,17 @@ class PayStreetAddress
 
   with_options presence: true do
     validates :token
-    validates :postal_code, format: {with: /\A[0-9]{3}-[0-9]{4}\z/, message: "Input correctly"}
+    validates :postal_code, format: { with: /\A[0-9]{3}-[0-9]{4}\z/, message: 'Input correctly' }
     validates :municipalities
     validates :address
-    validates :tel, numericality: {only_integer: true, message:"Input only number"}
+    validates :tel, numericality: { only_integer: true, message: 'Input only number' }
   end
-  validates :area_id, numericality: {other_than: 1, message: "select"}
+  validates :area_id, numericality: { other_than: 1, message: 'select' }
 
   def save
-    
     pay = Pay.create(item_id: item_id, user_id: user_id)
 
-    StreetAddress.create( postal_code: postal_code, area_id: area_id, municipalities: municipalities, address: address, place: place, tel: tel, pay_id: pay.id )
+    StreetAddress.create(postal_code: postal_code, area_id: area_id, municipalities: municipalities, address: address,
+                         place: place, tel: tel, pay_id: pay.id)
   end
 end

@@ -56,8 +56,6 @@ class ItemsController < ApplicationController
   end
 
   def move_index2
-    unless @item.pay.nil?
-      redirect_to root_path
-    end
+    redirect_to root_path unless @item.pay.nil?
   end
 end
