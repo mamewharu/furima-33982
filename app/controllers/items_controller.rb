@@ -3,6 +3,7 @@ class ItemsController < ApplicationController
   before_action :set_item, only: [:show, :edit, :update, :destroy]
   before_action :move_index, only: [:edit, :update, :destroy]
 
+
   def index
     @items = Item.all.order('created_at DESC')
   end
@@ -51,6 +52,9 @@ class ItemsController < ApplicationController
   end
 
   def move_index
-    redirect_to root_path if current_user == @item.user || @item.pay.nil?
+    if current_user != @item.user || @item.pay.present?
+      redirect_to root_path
+    end
+    # redirect_to root_path unless current_user == @item.user || @item.pay.nil?
   end
 end
